@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import './MovieRow.css';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import Modal from '../Modal';
 
-export default ({title, items}) => {
+export default ({title, items, status, setStatus, setId}) => {
 
     const [scrollX, setScrollX] = useState(0);
+    
 
 
     const handleLeftArrow = () => {
@@ -28,6 +30,11 @@ export default ({title, items}) => {
         setScrollX(x);
 
     }
+
+    const handleMovieClick = (event, id) => {
+        setId(id);
+        setStatus(true);
+    }
     
     return (
         <div className='movieRow'>
@@ -47,12 +54,20 @@ export default ({title, items}) => {
                     width: items.results.length * 150
                 }}>
                     {items.results.length > 0 && items.results.map((item, key) => (
-                        <div key = {key} className='movieRow--item'>
-                            <img src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} alt={item.originall_title}/>
+                       
+                        <div key = {key} className='movieRow--item' >
+                            <img 
+                                src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} 
+                                alt={item.originall_title} 
+                                onClick={(event) => handleMovieClick(event, item.id)}
+                            />
                         </div>
                     ))}
                 </div>
             </div>
+
         </div>
+
+        
     )
 }

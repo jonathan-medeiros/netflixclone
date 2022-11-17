@@ -4,12 +4,15 @@ import Tmdb from "./Tmdb";
 import MovieRow from "./components/MovieRow";
 import FeaturedMovie from "./components/FeaturedMovie";
 import Header from "./components/Header";
+import Modal from "./components/Modal";
 
 export default () => {
 
    const [movieList, setMovieList] = useState([]);
    const [featuredData, setFeaturedData] = useState(null);
    const [blackHeader, setBlackHeader] = useState(false);
+   const [modalStatus, setModalStatus] = useState(true);
+   const [idFilmeModal, setIdFilmeModal] = useState(0)
 
    useEffect(() => {
       const loadAll = async () => {
@@ -60,7 +63,7 @@ export default () => {
          <section className="lists">
             {movieList.map((item, key)=>(
                
-               <MovieRow key={key} title={item.title} items={item.items}/>
+               <MovieRow key={key} title={item.title} items={item.items} status={modalStatus} setStatus={setModalStatus} setId={setIdFilmeModal}/>
                
             ))}
 
@@ -80,7 +83,9 @@ export default () => {
             </div>
 
          }
-         
+         <Modal status={modalStatus} setStatus={setModalStatus}>
+            Filme clicado: {idFilmeModal}
+         </Modal>
 
       </div>
    )
