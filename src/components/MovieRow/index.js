@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import './MovieRow.css';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import Modal from '../Modal';
 
-export default ({title, items, status, setStatus, setId}) => {
+
+export default ({title, items, setStatus, setSelected}) => {
 
     const [scrollX, setScrollX] = useState(0);
     
@@ -31,9 +31,10 @@ export default ({title, items, status, setStatus, setId}) => {
 
     }
 
-    const handleMovieClick = (event, id) => {
-        setId(id);
+    const handleMovieClick = (event, selected) => {
+        setSelected(selected);
         setStatus(true);
+        // console.log(selected);
     }
     
     return (
@@ -59,7 +60,7 @@ export default ({title, items, status, setStatus, setId}) => {
                             <img 
                                 src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} 
                                 alt={item.originall_title} 
-                                onClick={(event) => handleMovieClick(event, item.id)}
+                                onClick={(event) => handleMovieClick(event, item)}
                             />
                         </div>
                     ))}
@@ -67,7 +68,5 @@ export default ({title, items, status, setStatus, setId}) => {
             </div>
 
         </div>
-
-        
     )
 }

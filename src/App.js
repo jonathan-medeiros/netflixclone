@@ -5,14 +5,15 @@ import MovieRow from "./components/MovieRow";
 import FeaturedMovie from "./components/FeaturedMovie";
 import Header from "./components/Header";
 import Modal from "./components/Modal";
+import ModalMovie from "./components/ModalMovie";
 
 export default () => {
 
    const [movieList, setMovieList] = useState([]);
    const [featuredData, setFeaturedData] = useState(null);
    const [blackHeader, setBlackHeader] = useState(false);
-   const [modalStatus, setModalStatus] = useState(true);
-   const [idFilmeModal, setIdFilmeModal] = useState(0)
+   const [modalStatus, setModalStatus] = useState(false);
+   const [movieSelected, setMovieSelected] = useState([]);
 
    useEffect(() => {
       const loadAll = async () => {
@@ -63,7 +64,7 @@ export default () => {
          <section className="lists">
             {movieList.map((item, key)=>(
                
-               <MovieRow key={key} title={item.title} items={item.items} status={modalStatus} setStatus={setModalStatus} setId={setIdFilmeModal}/>
+               <MovieRow key={key} title={item.title} items={item.items} setStatus={setModalStatus} setSelected={setMovieSelected}/>
                
             ))}
 
@@ -84,7 +85,10 @@ export default () => {
 
          }
          <Modal status={modalStatus} setStatus={setModalStatus}>
-            Filme clicado: {idFilmeModal}
+            {/* Filme clicado: {idFilmeModal} */}
+            <ModalMovie movie={movieSelected}>
+
+            </ModalMovie>
          </Modal>
 
       </div>

@@ -8,10 +8,9 @@ export const Container = styled.div`
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.7);
-    z-index: 9;
+    z-index: 9999;
     justify-content: center;
     align-items: center;
-    
 `;
 
 export const ModalBody = styled.div`
@@ -22,7 +21,8 @@ export const ModalBody = styled.div`
     font-size: 22px;
     border-radius: 10px;
     box-shadow: 0px 0px 50px #000;
-    max-width: 90vh;
+    max-width: 90vw;
     max-height: 90vh;
     overflow: auto;
+    
 `;
