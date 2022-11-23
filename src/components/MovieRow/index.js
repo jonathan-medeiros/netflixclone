@@ -34,7 +34,6 @@ export default ({title, items, setStatus, setSelected}) => {
     const handleMovieClick = (event, selected) => {
         setSelected(selected);
         setStatus(true);
-        // console.log(selected);
     }
     
     return (
